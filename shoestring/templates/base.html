@@ -1,0 +1,62 @@
+{% load compress %} 
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head prefix="{% block prefix %}og: http://ogp.me/ns#{% endblock %}">
+        <meta charset="utf-8">
+        <title>{% block title %}Default Title{% endblock %} | SiteName</title>
+
+        <meta name="language" content="en_US">
+        <meta http-equiv="content-language" content="en_US">
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+       	<link rel="canonical" href="{{ request.build_absolute_uri|urlencode }}" />
+
+       	<!-- ICONS -->
+		<link rel="shortcut icon" href="{{STATIC_URL}}img/favicon.ico">
+		<link rel="apple-touch-icon" sizes="57x57" href="{{STATIC_URL}}img/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="{{STATIC_URL}}img/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="{{STATIC_URL}}img/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="{{STATIC_URL}}img/apple-touch-icon-144x144.png">
+
+		<!-- CSS -->
+		{% if debug %}
+		<link rel="stylesheet" type="text/less" media="all" href="{{STATIC_URL}}css/style.less" />
+		<script type="text/javascript" src="{{STATIC_URL}}js/vendor/less/dist/less-1.5.0.js"></script>
+		{% else %}
+		{% compress css %}
+		<link rel="stylesheet" href="{{STATIC_URL}}css/style.css" type="text/css" />
+		{% endcompress %}
+		{% endif %}
+		{% block extra_css %}{% endblock %}
+		<link rel="stylesheet" type="text/css" media="all" href="{{STATIC_URL}}css/ie.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="{{STATIC_URL}}js/vendor/modernizr/modernizr.js"></script>
+    </head>
+
+	<body>
+		{% block header %}
+        <header></header>
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+
+        {% block footer %}
+		<footer></footer>
+		{% endblock %}
+
+		<!-- JS -->
+		{% if debug %}
+		<script type="text/javascript" src="{{STATIC_URL}}js/vendor/jquery/jquery.js"></script>
+		{% else %}
+		{% compress js %}
+		<script type="text/javascript" src="{{STATIC_URL}}js/vendor/jquery/jquery.js"></script>
+		<!-- OTHER JS FILES GO HERE -->
+		{% endcompress %}	
+		{% endif %}
+		{% block extra_js %}{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,4 @@
+{
+	"directory": "{{project_name}}/static/js/vendor",
+	"json": "bower.json"
+}
